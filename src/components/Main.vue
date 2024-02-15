@@ -2,5 +2,7 @@
 export default{}
 </script>
 <template>
-    main
+    <main>
+        main
+    </main>
 </template>

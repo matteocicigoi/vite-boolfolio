@@ -2,5 +2,7 @@
 export default{}
 </script>
 <template>
-    header
+    <header>
+        header
+    </header>
 </template>
