@@ -2,11 +2,11 @@
 export default {}
 </script>
 <template>
-    <header>
+    <footer>
         <nav class="navbar bg-body-tertiary p-3">
             <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#">Portfolio</a>
+                <a class="navbar-brand" href="#">footer</a>
             </div>
         </nav>
-    </header>
+    </footer>
 </template>

@@ -2,10 +2,12 @@
 import axios from 'axios';
 import Header from './components/Header.vue';
 import Main from './components/Main.vue';
+import Footer from './components/Footer.vue';
 export default {
     components: {
         Header,
-        Main
+        Main,
+        Footer
     },
     data() {
         return {
@@ -13,15 +15,26 @@ export default {
             'urlMethod' : {
                 'projects' : '/api/projects'
             },
-            'data' : ''
+            'data' : {},
+            'urlImage' : 'http://127.0.0.1:8000/storage/'
         };
     },
     created() {
-        axios.get(this.url + this.urlMethod.projects).then((response) => {
-            this.data = response.data.results;
-            console.log(response.data.results.data);
-        });
+        this.getProjects(this.url + this.urlMethod.projects);
 
+    },
+    methods: {
+        getProjects(url){
+            axios.get(url).then((response) => {
+            this.data = response.data.results;
+        });
+        },
+        prev(){
+            this.getProjects(this.data.prev_page_url);
+        },
+        next(){
+            this.getProjects(this.data.next_page_url);
+        }
     }
 };
 </script>
@@ -31,6 +44,9 @@ export default {
     <Header></Header>
     <!-- Fine Header -->
     <!-- Main -->
-    <Main></Main>
+    <Main :projects="data.data" :urlImage="urlImage" :prev="data.prev_page_url" :next="data.next_page_url" @prev="prev" @next="next"></Main>
     <!-- Fine Main -->
+    <!-- Footer -->
+    <Footer></Footer>
+    <!-- Fine Footer -->
 </template>
