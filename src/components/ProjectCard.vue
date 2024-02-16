@@ -12,7 +12,7 @@ export default {
             if(technology === 'sql') return ['fas', 'database'];
             if(technology === 'bootstrap') return ['fab', 'bootstrap'];
             if(technology === 'vue') return ['fab', 'vuejs'];
-            //if(technology === 'vite') return ['fab', 'vuejs'];
+            if(technology === 'vite') return ['fas', 'bolt-lightning'];
             if(technology === 'laravel') return ['fab', 'laravel'];
             return false;
         },
@@ -25,18 +25,20 @@ export default {
 };
 </script>
 <template>
-    <article class="col-3 p-2">
+    <article class="col-12 col-md-6 col-xl-3 p-2">
+        <RouterLink :to="{name : 'single-project', params: {slug : this.project.slug}}" class="text-decoration-none" >
         <div class="card h-100">
-            <img v-if="project.image" :src="urlImage + project.image" class="card-img-top" alt="...">
+            <img v-if="project.image" :src="urlImage + project.image" class="card-img-top" :alt="project.name">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ project.name }}</h5>
                     <h6 class="badge col-6 border border-primary" :class="getClass(project.type?.name)">{{ project.type?.name }}</h6>
                     <ul class="list-unstyled">
-                        <li v-for="technology in project.technologies" class="d-inline px-2 h5" :class="technology.slug"><span v-if="(getIcon(technology.name) === false)">{{ technology.name }}</span><font-awesome-icon v-else :icon="getIcon(technology.name)" /></li>
+                        <li v-for="technology in project.technologies" class="d-inline px-2 h5" :class="technology.slug"><span v-if="(getIcon(technology.name) === false)">{{ technology.name }}</span><font-awesome-icon v-else :icon="getIcon(technology.name)" :title="technology.name"/></li>
                     </ul>
                 <a :href="project.link" class="btn btn-primary mt-auto col-6 mx-auto" v-if="project.link">Link</a>
             </div>
         </div>
+    </RouterLink>
     </article>
 </template>
 
@@ -65,7 +67,7 @@ ul {
             color: #3FB27F;
         }
         &.vite{
-            color: #ffffff;
+            color: #F7C624;
         }
         &.laravel{
             color: #F72C1F;

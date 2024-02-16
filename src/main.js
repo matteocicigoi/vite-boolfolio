@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style/style.scss'
 import App from './App.vue'
+import { router } from  './router'; 
 
 // Font awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -17,12 +18,13 @@ import {faDatabase} from '@fortawesome/free-solid-svg-icons';
 import {faBootstrap} from '@fortawesome/free-brands-svg-icons';
 import {faVuejs} from '@fortawesome/free-brands-svg-icons';
 import {faLaravel} from '@fortawesome/free-brands-svg-icons';
+import {faBoltLightning} from '@fortawesome/free-solid-svg-icons';
 
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faHtml5, faCss3Alt, faJs, faPhp, faDatabase, faBootstrap, faVuejs, faLaravel, faArrowRight, faArrowLeft);
+library.add(faHtml5, faCss3Alt, faJs, faPhp, faDatabase, faBootstrap, faVuejs, faLaravel, faArrowRight, faArrowLeft, faBoltLightning);
 // Fine Font awesome
 
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
